@@ -1,5 +1,5 @@
 # FORMA DE EJECUTAR EL SCRIPT EN TERMINAL:
-# sh ./parte-1/CSP-calls.sh
+# sh ./parte_1/CSP-calls.sh
 
 # NOTA: los primeros tests pueden tardar un poco en ejecutarse, ya que poseen un gran número de soluciones
 
