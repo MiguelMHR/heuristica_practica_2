@@ -4,13 +4,40 @@
 """ importing libraries """
 import sys
 import time
+import re
+import os
 
+# ========== LECTURA DE LA ENTRADA ==========
 # Importamos las listas para poder obtener los datos del archivo
-# El diccionario de un archivo .prob de un path
-# Otra función para parsear el resultado de la función anterior a una lista
+def parse_file(path):
+    with open(path, "r", encoding="utf8") as archivo:
+        resultado = (archivo.read())
+        # parseamos el resultado a lista de listas
+        # Usa expresiones regulares para dividir el contenido en filas
+        filas = re.split(r'\n+', resultado.strip())
+        # Divide cada fila en elementos usando ';'
+        mapa = [re.split(r';+', fila) for fila in filas]
+        # Cambiamos las '1' y '2' por 1 y 2
+        for i in range(len(mapa)):
+            for j in range(len(mapa[i])):
+                if mapa[i][j] == '1' or mapa[i][j] == '2':
+                    mapa[i][j] = int(mapa[i][j])
+        return mapa
 
-
-
+# ========== ESCRITURA DE LA SALIDA ==========
+def salida_solucion_problema(pasos_solucion):
+    nombre_archivo = 'parte_2/ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.output'
+    with open(nombre_archivo, "w", encoding="utf8") as archivo:
+        for paso in pasos_solucion:
+            archivo.write(paso) 
+            
+def salida_estadisticas(tiempo_total, coste_total, longitud_solucion, nodos_expandidos):
+    nombre_archivo = 'parte_2/ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.stats'
+    with open(nombre_archivo, "w", encoding="utf8") as archivo:
+        archivo.write('Tiempo total: ' + str(tiempo_total) + "\n")
+        archivo.write('Coste total: ' + str(coste_total) + "\n")
+        archivo.write('Longitud de la solución: ' + str(longitud_solucion) + "\n")
+        archivo.write('Nodos expandidos: ' + str(nodos_expandidos) + "\n")
 
 # ========== ESTADOS DEL PROBLEMA ==========
 class Estado():
@@ -860,42 +887,21 @@ def a_estrella(estado_inicial: Estado, mapa: list, num_heuristica: int):
 # ========== PROGRAMA PRINCIPAL ==========
 def main():
     """ Función principal del programa """
-    # Obtenemos el path del fichero y la heurística a utilizar desde la consola
-
-    # Mapa provisional:
-    """
-    N;1;1;1;1;1;1;1;N;1
-    1;C;1;X;X;X;1;1;1;C
-    1;1;X;2;2;1;N;1;2;2
-    1;1;X;2;CC;1;1;1;CN;2
-    1;1;X;2;2;2;2;2;2;2
-    1;1;X;1;1;1;N;1;1;C
-    N;X;X;X;X;X;1;N;1;1
-    1;N;1;P;1;1;1;1;1;1
-    1;N;1;1;1;1;N;1;N;1
-    1;1;1;1;1;1;1;1;1;N
-    """
-    # mapa = [['N', 1, 1, 1, 1, 1, 1, 1, 'N', 1],
-    #         [1, 'C', 1, 'X', 'X', 'X', 1, 1, 1, 'C'],
-    #         [1, 1, 'X', 2, 2, 1, 'N', 1, 2, 2],
-    #         [1, 1, 'X', 2, 'CC', 1, 1, 1, 'CN', 2],
-    #         [1, 1, 'X', 2, 2, 2, 2, 2, 2, 2],
-    #         [1, 1, 'X', 1, 1, 1, 'N', 1, 1, 'C'],
-    #         ['N', 'X', 'X', 'X', 'X', 'X', 1, 'N', 1, 1],
-    #         [1, 'N', 1, 'P', 1, 1, 1, 1, 1, 1],
-    #         [1, 'N', 1, 1, 1, 1, 'N', 1, 'N', 1],
-    #         [1, 1, 1, 1, 1, 1, 1, 1, 1, 'N']]
-
-    mapa = [[1, 1, 'N', 1, 1],
-            [1, 'CN', 'X', 'C', 1],
-            [1, 1, 'X', 1, 1],
-            [1, 'CC', 'X', 'P', 1],
-            [1, 1, 1, 1, 1]]
+    # Obtenemos el path del fichero y la heurística a utilizar desde la consola, además de hacer comprobaciones adicionales
+    if len(sys.argv) < 3 or len(sys.argv) > 3:
+        print("Error: Se necesita un argumento (el path al test) y un tipo de heurística (1 al 5)")
+        sys.exit(1)
+    else:
+        path = sys.argv[1]
+        num_heuristica = int(sys.argv[2])
+        if num_heuristica not in [1, 2, 3, 4, 5]:
+            print("Error: El tipo de heurística debe ser entre 1 o 5")
+            sys.exit(1)
     
-    
-    
+    # Leemos el fichero y definimos los parámetros para el A*
+    mapa = parse_file(path)
     CARGA_INICIAL = 50
-    N_HEURISTICA = 5
+    N_HEURISTICA = num_heuristica
     ubi_inicial = None
     ubi_cn = []
     ubi_cc = []
@@ -924,18 +930,9 @@ def main():
     # Resolvemos el problema
     pasos_solucion, tiempo_total, coste_total, longitud_solucion, nodos_expandidos = a_estrella(estado_inicial, mapa, N_HEURISTICA)
     
-    # Imprimimos los resultados
-    print("Pasos de la solución:")
-    print(pasos_solucion)
-    print("Tiempo total:")
-    print(tiempo_total)
-    print("Coste total:")
-    print(coste_total)
-    print("Longitud de la solución:")
-    print(longitud_solucion)
-    print("Nodos expandidos:")
-    print(nodos_expandidos)
-
+    # Creamos los ficheros de salida
+    salida_solucion_problema(pasos_solucion)
+    salida_estadisticas(tiempo_total, coste_total, longitud_solucion, nodos_expandidos)
 
 if __name__ == '__main__':
     # Llamamos a la función principal
