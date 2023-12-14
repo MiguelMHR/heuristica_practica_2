@@ -56,9 +56,12 @@ def read_data(path: str) -> tuple:
         # Leemos las dimensiones del parking
         dimensiones = file.readline().split("x")
         dimensiones = (int(dimensiones[0]), int(dimensiones[1]))
-        # Leemos las plazas especiales
-        plazas_especiales = file.readline()[4:].split(" ")
-        plazas_especiales = [(int(char[1]), int(char[3])) for char in plazas_especiales]
+        # Leemos las plazas especiales, si no hay se devuelve una lista vacía
+        try :
+            plazas_especiales = file.readline()[4:].split(" ")
+            plazas_especiales = [(int(char[1]), int(char[3])) for char in plazas_especiales]
+        except:
+            plazas_especiales = []
         # Leemos los vehículos
         vehiculos = []
         for line in file:
@@ -139,7 +142,7 @@ for i in tnu["c"]:
 # ========== DEFINIMOS LAS RESTRICCIONES ==========
 
 # 1. Todo vehículo tiene que tener asignada una plaza y solo una
-# 2. Dos vehículos distintos, no pueden ocupar la misma plaza
+# 2. Dos vehículos distintos no pueden ocupar la misma plaza
 problem.addConstraint(constraint.AllDifferentConstraint())
 
 # 3. Los vehículos con congelador solo pueden ir en las plazas especiales
