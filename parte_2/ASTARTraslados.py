@@ -19,7 +19,7 @@ def parse_file(path):
         # Cambiamos las 'dígito' por int
         for i in range(len(mapa)):
             for j in range(len(mapa[i])):
-                patron = r'^\d$'
+                patron = r'^\d+'
                 if re.match(patron, mapa[i][j]):
                     mapa[i][j] = int(mapa[i][j])
         print(mapa)
@@ -825,7 +825,12 @@ def a_estrella(estado_inicial: Estado, mapa: list, num_heuristica: int):
         # Sacamos el primer elemento de la lista abierta que no esté en la lista cerrada
         estado_actual = abierta.pop(0)
         while estado_actual in cerrada:     # Esto utiliza el método __eq__ de la clase Estado
-            estado_actual = abierta.pop(0)
+            # Esto se hace para evitar que se acceda a la lista vacía y nos de error cuando solo quedaba
+            # 1 elemento en la lista vacía antes de hacer el pop del estado actual
+            try :
+                estado_actual = abierta.pop(0)
+            except IndexError:
+                break
         # Si el estado actual es meta, terminamos
         if (estado_actual.valor == 'P' and not estado_actual.ubi_n and not estado_actual.ubi_c and 
             not estado_actual.plazas_n and not estado_actual.plazas_c):
