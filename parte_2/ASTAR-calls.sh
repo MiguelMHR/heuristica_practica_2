@@ -4,7 +4,7 @@
 ##### EJECUCIÓN DE TEST INICIAL -> EJEMPLO ENUNCIADO CON UNA MATRIZ 10X10 #####
 # NOTA: este test tarda demasiado en ejecutarse,así que se ha preferido dejar comentado y no 
 #       tomarlo en consideración al no conseguir ejecutarse en un tiempo razonable
-#python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa_enunciado.csv 
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa_enunciado.csv 
 
 ##### EJECUCIÓN DEL PRIMER TEST -> EJEMPLO FACTIBLE CON UNA MATRIZ 5X5 #####
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa1.csv 1
@@ -48,33 +48,32 @@ python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa6.csv 3
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa6.csv 4
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa6.csv 5
 
-######## CASOS IMPOSIBLES ########
+####### CASOS IMPOSIBLES ########
 
-##### EJECUCIÓN DEL TEST -> EJEMPLO SIN SOLUCIÓN NO HAY PARKING #####
+#### EJECUCIÓN DEL TEST 7 -> EJEMPLO SIN SOLUCIÓN NO HAY PARKING #####
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa7.csv 1
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa7.csv 2
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa7.csv 3
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa7.csv 4
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa7.csv 5
 
-##### EJECUCIÓN DEL SEGUNDO TEST -> EJEMPLO SIN SOLUCIÓN CAMINO BLOQUEADO #####
-python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa7.csv 1
+##### EJECUCIÓN DEL TEST 8 -> EJEMPLO SIN SOLUCIÓN CAMINO BLOQUEADO #####
+python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa8.csv 1
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa8.csv 2
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa8.csv 3
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa8.csv 4
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa8.csv 5
 
-##### EJECUCIÓN DEL TEST -> EJEMPLO SIN SOLUCIÓN VEHÍCULO SIN CARGA #####
+# ##### EJECUCIÓN DEL TEST 9 -> EJEMPLO SIN SOLUCIÓN VEHÍCULO SIN CARGA #####
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa9.csv 1
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa9.csv 2
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa9.csv 3
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa9.csv 4
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa9.csv 5
 
-##### EJECUCIÓN DEL TEST -> EJEMPLO SIN SOLUCIÓN VEHÍCULO SIN CARGA RECOGIENDO A ALGUNOS #####
+# ##### EJECUCIÓN DEL TEST 10 -> EJEMPLO SIN SOLUCIÓN VEHÍCULO SIN CARGA RECOGIENDO A ALGUNOS #####
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa10.csv 1
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa10.csv 2
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa10.csv 3
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa10.csv 4
 python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa10.csv 5
-
