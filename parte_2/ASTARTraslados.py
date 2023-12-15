@@ -738,7 +738,13 @@ def acciones_casilla_CC(estado: Estado, coste_predeterminado: int = 1) -> (int, 
     # La lista de plazas no contagiosas se mantiene igual
     nueva_plazas_n = estado.plazas_n.copy()
     # La lista de plazas contagiosas se vacía (se descargan todos los pacientes contagiosos)
-    nueva_plazas_c = []
+    # si hay algún paciente contagioso en ellas, significa que solo hay pacientes contagiosos
+    if True in estado.plazas_c:     # Los pacientes contagiosos tienen un valor True
+        nueva_plazas_c = []
+    # Si no hay pacientes contagiosos en las plazas contagiosas, se mantiene igual
+    # pues puede estar vacía o contener solo pacientes no contagiosos
+    else:
+        nueva_plazas_c = estado.plazas_c.copy()
     return nueva_carga, nueva_ubi_c, nueva_ubi_n, nueva_plazas_c, nueva_plazas_n
 
 def acciones_casilla_CN(estado: Estado, coste_predeterminado: int = 1) -> (int, list, list, list, list):
