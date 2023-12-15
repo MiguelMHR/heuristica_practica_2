@@ -544,8 +544,10 @@ def recoger_paciente_n(estado: Estado, n_plazas_n: int = 8, n_plazas_c: int = 2)
         # Comprobamos si hay algún paciente contagioso en las plazas contagiosas
         if True in estado.plazas_c:     # Los pacientes contagiosos tienen un valor True
             return False, False
-    # Si no hay ningún paciente contagioso en las plazas contagiosas, se puede recoger
-    return True, True
+        # Si no hay ningún paciente contagioso en las plazas contagiosas, se puede recoger
+        return True, True
+    # Si no hay plazas no contagiosas libres ni plazas contagiosas libres, no se puede recoger
+    return False, False
 
 
 def recoger_paciente_c(estado: Estado, n_plazas_c: int = 2) -> bool:
@@ -564,8 +566,10 @@ def recoger_paciente_c(estado: Estado, n_plazas_c: int = 2) -> bool:
         # Comprobamos si hay algún paciente no contagioso en las plazas contagiosas
         if False in estado.plazas_c:    # Los pacientes no contagiosos tienen un valor False
             return False
-    # Si no hay ningún paciente no contagioso en las plazas contagiosas, se puede recoger
-    return True
+        # Si no hay ningún paciente no contagioso en las plazas contagiosas, se puede recoger
+        return True
+    # Si no hay plazas contagiosas libres, no se puede recoger
+    return False
 
 def descargar_pacientes_n(estado: Estado) -> (bool, bool):
     """
