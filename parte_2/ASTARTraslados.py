@@ -354,6 +354,10 @@ class Estado():
 
     def __eq__(self, estado):
         """ Función que compara si dos estados son iguales """
+        # Si "estado" no es un objeto de la clase Estado, se devuelve False
+        if not isinstance(estado, Estado):
+            return False
+        # En caso contrario, se comparan los atributos de los dos estados
         return self.x == estado.x and self.y == estado.y and self.carga == estado.carga and \
                self.ubi_n == estado.ubi_n and self.ubi_c == estado.ubi_c and \
                self.plazas_n == estado.plazas_n and self.plazas_c == estado.plazas_c
@@ -824,22 +828,23 @@ def a_estrella(estado_inicial: Estado, mapa: list, num_heuristica: int):
     cerrada = []    # Es una lista de estados ya expandidos
     meta = False    # Indica si se ha expandido un estado meta
     solucion = []   # Lista de estados que forman la solución
+    early_stop = False  # Permitirá parar el algoritmo si la lista abierta está vacía y el último estado se encontraba en la lista cerrada
     # Mientras la lista abierta no esté vacía y no se haya expandido una meta
     while abierta and not meta:
         # Sacamos el primer elemento de la lista abierta que no esté en la lista cerrada
         estado_actual = abierta.pop(0)
         while estado_actual in cerrada:     # Esto utiliza el método __eq__ de la clase Estado
-            # Esto se hace para evitar que se acceda a la lista vacía y nos de error cuando solo quedaba
-            # 1 elemento en la lista vacía antes de hacer el pop del estado actual
             try :
                 estado_actual = abierta.pop(0)
             except IndexError:
-                break
+                # La lista abierta está vacía
+                estado_actual = None
+                early_stop = True
         # Si el estado actual es meta, terminamos
-        if (estado_actual.valor == 'P' and not estado_actual.ubi_n and not estado_actual.ubi_c and 
-            not estado_actual.plazas_n and not estado_actual.plazas_c):
+        if (not early_stop and estado_actual.valor == 'P' and not estado_actual.ubi_n and
+            not estado_actual.ubi_c and not estado_actual.plazas_n and not estado_actual.plazas_c):
             meta = True
-        else:
+        elif not early_stop:
             # Si el estado actual no es meta, lo expandimos
             # Añadimos el estado actual a la lista cerrada
             cerrada.append(estado_actual)
