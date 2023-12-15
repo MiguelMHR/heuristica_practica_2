@@ -8,7 +8,6 @@ import re
 import os
 
 # ========== LECTURA DE LA ENTRADA ==========
-# Importamos las listas para poder obtener los datos del archivo
 def parse_file(path):
     with open(path, "r", encoding="utf8") as archivo:
         resultado = (archivo.read())
@@ -17,7 +16,7 @@ def parse_file(path):
         filas = re.split(r'\n+', resultado.strip())
         # Divide cada fila en elementos usando ';'
         mapa = [re.split(r';+', fila) for fila in filas]
-        # Cambiamos las '1' y '2' por 1 y 2
+        # Cambiamos las 'dígito' por int
         for i in range(len(mapa)):
             for j in range(len(mapa[i])):
                 patron = r'^\d$'
@@ -27,15 +26,16 @@ def parse_file(path):
         return mapa
 
 # ========== ESCRITURA DE LA SALIDA ==========
+# El nombre_archivo va a ser 'parte_2/ASTAR-tests/mapaX-num_heuristica.output' que es la ruta en donde mapaX-num_h.output va a estar
 def salida_solucion_problema(pasos_solucion):
-    nombre_archivo = 'parte_2/ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.output'
-    with open(nombre_archivo, "w", encoding="utf8") as archivo:
+    ruta_archivo = 'parte_2/ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.output'
+    with open(ruta_archivo, "w", encoding="utf8") as archivo:
         for paso in pasos_solucion:
             archivo.write(paso) 
             
 def salida_estadisticas(tiempo_total, coste_total, longitud_solucion, nodos_expandidos):
-    nombre_archivo = 'parte_2/ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.stats'
-    with open(nombre_archivo, "w", encoding="utf8") as archivo:
+    ruta_archivo = 'parte_2/ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.stats'
+    with open(ruta_archivo, "w", encoding="utf8") as archivo:
         archivo.write('Tiempo total: ' + str(tiempo_total) + "\n")
         archivo.write('Coste total: ' + str(coste_total) + "\n")
         archivo.write('Longitud de la solución: ' + str(longitud_solucion) + "\n")
