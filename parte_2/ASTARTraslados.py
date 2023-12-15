@@ -186,21 +186,23 @@ class Estado():
             # entre el último y el paciente contagioso más cercano
             distancia_minima_c = 0
             pacientes_c_visitados = []
-            # Se repite el proceso hasta que no queden pacientes contagiosos por visitar
-            while len(pacientes_c_visitados) < len(self.ubi_c):
-                # Se elige el paciente contagioso más cercano al último paciente no contagioso visitado
-                for paciente_c in self.ubi_c:
-                    distancia = abs(paciente_n_mas_cercano[0] - paciente_c[0]) + abs(paciente_n_mas_cercano[1] - paciente_c[1])
-                    if distancia_minima_c == 0 or distancia < distancia_minima_c:
-                        distancia_minima_c = distancia
-                        paciente_c_mas_cercano = paciente_c
-                # Se añade a la lista de pacientes contagiosos visitados
-                pacientes_c_visitados.append(paciente_c_mas_cercano)
-                # Se suma a la distancia total
-                distancia_total += distancia_minima_c
-            # Cuando no quedan pacientes contagiosos por visitar, se calcula la distancia de Manhattan
-            # entre el último paciente contagioso y el parking
-            distancia_total += abs(paciente_c_mas_cercano[0] - self.ubi_p[0]) + abs(paciente_c_mas_cercano[1] - self.ubi_p[1])
+            # Si quedan pacientes contagiosos por recoger
+            if self.ubi_c:
+                # Se repite el proceso hasta que no queden pacientes contagiosos por visitar
+                while len(pacientes_c_visitados) < len(self.ubi_c):
+                    # Se elige el paciente contagioso más cercano al último paciente no contagioso visitado
+                    for paciente_c in self.ubi_c:
+                        distancia = abs(paciente_n_mas_cercano[0] - paciente_c[0]) + abs(paciente_n_mas_cercano[1] - paciente_c[1])
+                        if distancia_minima_c == 0 or distancia < distancia_minima_c:
+                            distancia_minima_c = distancia
+                            paciente_c_mas_cercano = paciente_c
+                    # Se añade a la lista de pacientes contagiosos visitados
+                    pacientes_c_visitados.append(paciente_c_mas_cercano)
+                    # Se suma a la distancia total
+                    distancia_total += distancia_minima_c
+                # Cuando no quedan pacientes contagiosos por visitar, se calcula la distancia de Manhattan
+                # entre el último paciente contagioso y el parking
+                distancia_total += abs(paciente_c_mas_cercano[0] - self.ubi_p[0]) + abs(paciente_c_mas_cercano[1] - self.ubi_p[1])
             return distancia_total
         
         # Si no quedan pacientes no contagiosos por recoger
@@ -208,21 +210,23 @@ class Estado():
             pacientes_c_visitados = []
             distancia_minima_c = 0
             distancia_total = 0
-            # Se repite el proceso hasta que no queden pacientes contagiosos por visitar
-            while len(pacientes_c_visitados) < len(self.ubi_c):
-                # Se elige el paciente contagioso más cercano a la ambulancia
-                for paciente_c in self.ubi_c:
-                    distancia = abs(self.x - paciente_c[0]) + abs(self.y - paciente_c[1])
-                    if distancia_minima_c == 0 or distancia < distancia_minima_c:
-                        distancia_minima_c = distancia
-                        paciente_c_mas_cercano = paciente_c
-                # Se añade a la lista de pacientes contagiosos visitados
-                pacientes_c_visitados.append(paciente_c_mas_cercano)
-                # Se suma a la distancia total
-                distancia_total += distancia_minima_c
-            # Cuando no quedan pacientes contagiosos por visitar, se calcula la distancia de Manhattan
-            # entre el último paciente contagioso y el parking
-            distancia_total += abs(paciente_c_mas_cercano[0] - self.ubi_p[0]) + abs(paciente_c_mas_cercano[1] - self.ubi_p[1])
+            # Si quedan pacientes contagiosos por recoger
+            if self.ubi_c:
+                # Se repite el proceso hasta que no queden pacientes contagiosos por visitar
+                while len(pacientes_c_visitados) < len(self.ubi_c):
+                    # Se elige el paciente contagioso más cercano a la ambulancia
+                    for paciente_c in self.ubi_c:
+                        distancia = abs(self.x - paciente_c[0]) + abs(self.y - paciente_c[1])
+                        if distancia_minima_c == 0 or distancia < distancia_minima_c:
+                            distancia_minima_c = distancia
+                            paciente_c_mas_cercano = paciente_c
+                    # Se añade a la lista de pacientes contagiosos visitados
+                    pacientes_c_visitados.append(paciente_c_mas_cercano)
+                    # Se suma a la distancia total
+                    distancia_total += distancia_minima_c
+                # Cuando no quedan pacientes contagiosos por visitar, se calcula la distancia de Manhattan
+                # entre el último paciente contagioso y el parking
+                distancia_total += abs(paciente_c_mas_cercano[0] - self.ubi_p[0]) + abs(paciente_c_mas_cercano[1] - self.ubi_p[1])
             return distancia_total
     
     def heuristica_5(self) -> int:
@@ -302,21 +306,23 @@ class Estado():
             # entre el último y el paciente contagioso más cercano
             distancia_minima_c = 0
             pacientes_c_visitados = []
-            # Se repite el proceso hasta que no queden pacientes contagiosos por visitar
-            while len(pacientes_c_visitados) < len(self.ubi_c):
-                # Se elige el paciente contagioso más cercano al último paciente no contagioso visitado
-                for paciente_c in self.ubi_c:
-                    distancia = abs(paciente_n_mas_cercano[0] - paciente_c[0]) + abs(paciente_n_mas_cercano[1] - paciente_c[1])
-                    if distancia_minima_c == 0 or distancia < distancia_minima_c:
-                        distancia_minima_c = distancia
-                        paciente_c_mas_cercano = paciente_c
-                # Se añade a la lista de pacientes contagiosos visitados
-                pacientes_c_visitados.append(paciente_c_mas_cercano)
-                # Se suma a la distancia total
-                distancia_total += distancia_minima_c
-            # Cuando no quedan pacientes contagiosos por visitar, se calcula la distancia de Manhattan
-            # entre el último paciente contagioso y el parking
-            distancia_total += abs(paciente_c_mas_cercano[0] - self.ubi_p[0]) + abs(paciente_c_mas_cercano[1] - self.ubi_p[1])
+            # Si quedan pacientes contagiosos por recoger
+            if self.ubi_c:
+                # Se repite el proceso hasta que no queden pacientes contagiosos por visitar
+                while len(pacientes_c_visitados) < len(self.ubi_c):
+                    # Se elige el paciente contagioso más cercano al último paciente no contagioso visitado
+                    for paciente_c in self.ubi_c:
+                        distancia = abs(paciente_n_mas_cercano[0] - paciente_c[0]) + abs(paciente_n_mas_cercano[1] - paciente_c[1])
+                        if distancia_minima_c == 0 or distancia < distancia_minima_c:
+                            distancia_minima_c = distancia
+                            paciente_c_mas_cercano = paciente_c
+                    # Se añade a la lista de pacientes contagiosos visitados
+                    pacientes_c_visitados.append(paciente_c_mas_cercano)
+                    # Se suma a la distancia total
+                    distancia_total += distancia_minima_c
+                # Cuando no quedan pacientes contagiosos por visitar, se calcula la distancia de Manhattan
+                # entre el último paciente contagioso y el parking
+                distancia_total += abs(paciente_c_mas_cercano[0] - self.ubi_p[0]) + abs(paciente_c_mas_cercano[1] - self.ubi_p[1])
             return distancia_total
         
         # Si no quedan pacientes no contagiosos por recoger
@@ -324,21 +330,23 @@ class Estado():
             pacientes_c_visitados = []
             distancia_minima_c = 0
             distancia_total = 0
-            # Se repite el proceso hasta que no queden pacientes contagiosos por visitar
-            while len(pacientes_c_visitados) < len(self.ubi_c):
-                # Se elige el paciente contagioso más cercano a la ambulancia
-                for paciente_c in self.ubi_c:
-                    distancia = abs(self.x - paciente_c[0]) + abs(self.y - paciente_c[1])
-                    if distancia_minima_c == 0 or distancia < distancia_minima_c:
-                        distancia_minima_c = distancia
-                        paciente_c_mas_cercano = paciente_c
-                # Se añade a la lista de pacientes contagiosos visitados
-                pacientes_c_visitados.append(paciente_c_mas_cercano)
-                # Se suma a la distancia total
-                distancia_total += distancia_minima_c
-            # Cuando no quedan pacientes contagiosos por visitar, se calcula la distancia de Manhattan
-            # entre el último paciente contagioso y el parking
-            distancia_total += abs(paciente_c_mas_cercano[0] - self.ubi_p[0]) + abs(paciente_c_mas_cercano[1] - self.ubi_p[1])
+            # Si quedan pacientes contagiosos por recoger
+            if self.ubi_c:
+                # Se repite el proceso hasta que no queden pacientes contagiosos por visitar
+                while len(pacientes_c_visitados) < len(self.ubi_c):
+                    # Se elige el paciente contagioso más cercano a la ambulancia
+                    for paciente_c in self.ubi_c:
+                        distancia = abs(self.x - paciente_c[0]) + abs(self.y - paciente_c[1])
+                        if distancia_minima_c == 0 or distancia < distancia_minima_c:
+                            distancia_minima_c = distancia
+                            paciente_c_mas_cercano = paciente_c
+                    # Se añade a la lista de pacientes contagiosos visitados
+                    pacientes_c_visitados.append(paciente_c_mas_cercano)
+                    # Se suma a la distancia total
+                    distancia_total += distancia_minima_c
+                # Cuando no quedan pacientes contagiosos por visitar, se calcula la distancia de Manhattan
+                # entre el último paciente contagioso y el parking
+                distancia_total += abs(paciente_c_mas_cercano[0] - self.ubi_p[0]) + abs(paciente_c_mas_cercano[1] - self.ubi_p[1])
             return distancia_total
 
     def __str__(self):
