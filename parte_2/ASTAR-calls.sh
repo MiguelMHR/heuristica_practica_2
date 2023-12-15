@@ -21,11 +21,32 @@
 # python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa2.csv 5
 
 ##### EJECUCIÓN DEL TERCER TEST -> EJEMPLO FACTIBLE MUCHOS CONTAGIOSOS #####
-python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 1
-python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 2
-python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 3
-python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 4
-python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 5
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 1
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 2
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 3
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 4
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 5
+
+##### EJECUCIÓN DEL CUARTO TEST -> EJEMPLO FACTIBLE MUCHOS NO CONTAGIOSOS #####
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa4.csv 1
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa4.csv 2
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa4.csv 3
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa4.csv 4
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa4.csv 5
+
+##### EJECUCIÓN DEL QUINTO TEST -> EJEMPLO FACTIBLE 2 PARKINGS #####
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapadosparkings.csv 1
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapadosparkings.csv 2
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapadosparkings.csv 3
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapadosparkings.csv 4
+# python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapadosparkings.csv 5
+
+##### EJECUCIÓN DEL SEXTO TEST -> EJEMPLO FACTIBLE TODO CENTROS Y PACIENTES #####
+python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa6.csv 1
+python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa6.csv 2
+python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa6.csv 3
+python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa6.csv 4
+python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa6.csv 5
 
 ######## CASOS IMPOSIBLES ########
 
@@ -56,3 +77,4 @@ python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapa3.csv 5
 # python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapacosterecogida.csv 3
 # python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapacosterecogida.csv 4
 # python parte_2/ASTARTraslados.py parte_2/ASTAR-tests/mapacosterecogida.csv 5
+
