@@ -20,8 +20,10 @@ def parse_file(path):
         # Cambiamos las '1' y '2' por 1 y 2
         for i in range(len(mapa)):
             for j in range(len(mapa[i])):
-                if mapa[i][j] == '1' or mapa[i][j] == '2':
+                patron = r'^\d$'
+                if re.match(patron, mapa[i][j]):
                     mapa[i][j] = int(mapa[i][j])
+        print(mapa)
         return mapa
 
 # ========== ESCRITURA DE LA SALIDA ==========
