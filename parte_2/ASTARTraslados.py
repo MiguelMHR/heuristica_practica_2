@@ -26,15 +26,15 @@ def parse_file(path):
         return mapa
 
 # ========== ESCRITURA DE LA SALIDA ==========
-# El nombre_archivo va a ser 'parte_2/ASTAR-tests/mapaX-num_heuristica.output' que es la ruta en donde mapaX-num_h.output va a estar
+# El nombre_archivo va a ser './ASTAR-tests/mapaX-num_heuristica.output' que es la ruta en donde mapaX-num_h.output va a estar
 def salida_solucion_problema(pasos_solucion):
-    ruta_archivo = 'parte_2/ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.output'
+    ruta_archivo = './ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.output'
     with open(ruta_archivo, "w", encoding="utf8") as archivo:
         for paso in pasos_solucion:
             archivo.write(paso) 
             
 def salida_estadisticas(tiempo_total, coste_total, longitud_solucion, nodos_expandidos):
-    ruta_archivo = 'parte_2/ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.stats'
+    ruta_archivo = './ASTAR-tests/'+(os.path.basename(sys.argv[1]))[:-4]+'-'+(sys.argv[2])+'.stats'
     with open(ruta_archivo, "w", encoding="utf8") as archivo:
         archivo.write('Tiempo total: ' + str(tiempo_total) + "\n")
         archivo.write('Coste total: ' + str(coste_total) + "\n")
