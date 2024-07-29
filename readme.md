@@ -1,5 +1,8 @@
 # Práctica 2 - Satisfacción de restricciones y búsqueda heurística
 
+## Introducción
+Este trabajo consiste en la implementación del algoritmo A* para resolver un problema de búsqueda heurística
+
 ## Como instalar las librerías de nuestro trabajo
 
 Debemos instalar python3 en Linux con el siguiente comando:
